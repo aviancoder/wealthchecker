@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using wealthchecker.CustomLogic;
+using wealthchecker.Data;
 using wealthchecker.Models;
 
 namespace wealthchecker.Controllers
@@ -23,8 +23,15 @@ namespace wealthchecker.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult WealthTracker(BasicDetails _basicDetails)
         {
+
+            BasicDetails basicDetails = _basicDetails;
+            WealthTrackerOutputModel.BasicDetails = basicDetails;
+
+            WealthTrackerCustomLogic cl = new WealthTrackerCustomLogic();
+            cl.FillUpKiwiData();
+
             return View();
         }
 
