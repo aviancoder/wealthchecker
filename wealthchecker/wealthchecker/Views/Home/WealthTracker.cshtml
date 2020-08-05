@@ -4,39 +4,256 @@
     BasicDetails basicDetails = wealthchecker.Data.WealthTrackerOutputModel.BasicDetails;
 }
 
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Kiwi Saver</h5>
-                    <table class="table">
-                        <tr>
-                            <td><span>Current KiwiSaver</span></td>
-                            <td class="text-right"><span>@wealthchecker.Data.WealthTrackerOutputModel.KiwiSaverAmount.ToString("#,##0.00")</span></td>
-                        </tr>
-                        <tr>
-                            <td><span>KiwiSaver Contributions</span></td>
-                            <td class="text-right"><span>@wealthchecker.Data.WealthTrackerOutputModel.KiwiSaverContributions.ToString("#,##0.00")</span></td>
-                        </tr>
-                        <tr>
-                            <td><span>Kiwisaver Growth</span></td>
-                            <td class="text-right"><span>6%</span></td>
-                        </tr>
-                        <tr>
-                            <td><span class="text-info">KiwiSaver Total at Retirement</span></td>
-                            <td class="text-right"><span class="display-4">@wealthchecker.Data.WealthTrackerOutputModel.KiwiSaverTotalAtRetirement.ToString("#,##0.00")</span></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                   <div id="ChartContainer"></div>
-                </div>
+<div class="row">
+    <div class="col-md-12 mb-4 pr-md-1">
+        <div class="card">
+            <div class="card-body">
+                <div id="ChartContainer"></div>
             </div>
         </div>
     </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-4 pr-md-1">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-info">Income</h4>
+                <table class="table table-borderless">
+                    <tr>
+                        <td><span>Annual income required to retire now ($)</span></td>
+                        <td class="text-right"><span>@wealthchecker.Data.WealthTrackerOutputModel.TotalAnnualIncome.ToString("#,##0.00")</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Years to Retirement</span></td>
+                        <td class="text-right"><input class="form-control form-control-sm text-right" value="@wealthchecker.Data.WealthTrackerOutputModel.YearsToRetirement" /></td>
+                    </tr>
+                    <tr>
+                        <td><span>Inflation Rate</span></td>
+                        <td class="text-right"><input class="form-control form-control-sm text-right" value="@wealthchecker.Data.WealthTrackerOutputModel.InflationRate" /></td>
+                    </tr>
+                    <tr>
+                        <td><span>Annual Income to Retirement (Inflation Adjusted)</span></td>
+                        <td class="text-right"><span>@wealthchecker.Data.WealthTrackerOutputModel.AnnualIncomeForRetirement.ToString("#,##0.00")</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Less Pension (Inflation Adjusted at 2%)</span></td>
+                        <td class="text-right"><span>@wealthchecker.Data.WealthTrackerOutputModel.LessPension.ToString("#,##0.00")</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="text-success">Total Annual Income for Retirement ($)</span></td>
+                        <td class="text-right"><span class="h4">@wealthchecker.Data.WealthTrackerOutputModel.TotalAnnualIncomeForRetirement.ToString("#,##0.00")</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4 pr-md-1">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-info">Cash</h4>
+                <table class="table table-borderless">
+                    <tr>
+                        <td><span>Current Cash Savings ($)</span></td>
+                        <td class="text-right"><span>@wealthchecker.Data.WealthTrackerOutputModel.CurrentCashSavings.ToString("#,##0.00")</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Annual Cash Savings Contribution ($)</span></td>
+                        <td class="text-right"><input class="form-control form-control-sm text-right" value="@wealthchecker.Data.WealthTrackerOutputModel.AnnualCashSavingsContributions.ToString("#,##0.00")" /></td>
+                    </tr>
+                    <tr>
+                        <td><span>Interest Rate (%)</span></td>
+                        <td class="text-right"><input class="form-control form-control-sm text-right" value="@wealthchecker.Data.WealthTrackerOutputModel.CashSavingsInterestRate" /></td>
+                    </tr>
+                    <tr>
+                        <td><span class="text-success">Cash Savings at Retirement ($)</span></td>
+                        <td class="text-right"><span class="h4">@wealthchecker.Data.WealthTrackerOutputModel.TotalCashSavingsAtRetirement.ToString("#,##0.00")</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-4 pr-md-1">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-info">Kiwi Saver</h4>
+                <table class="table table-borderless">
+                    <tr>
+                        <td><span>Current KiwiSaver ($)</span></td>
+                        <td class="text-right"><span>@wealthchecker.Data.WealthTrackerOutputModel.KiwiSaverAmount.ToString("#,##0.00")</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>KiwiSaver Contributions (%)</span></td>
+                        <td class="text-right"><input class="form-control form-control-sm text-right" value="@wealthchecker.Data.WealthTrackerOutputModel.KiwiSaverContributions.ToString("#,##0.00")" /></td>
+                    </tr>
+                    <tr>
+                        <td><span>Kiwisaver Growth (%)</span></td>
+                        <td class="text-right"><input class="form-control form-control-sm text-right" value="6" /></td>
+                    </tr>
+                    <tr>
+                        <td><span class="text-success">KiwiSaver Total at Retirement ($)</span></td>
+                        <td class="text-right"><span class="h4">@wealthchecker.Data.WealthTrackerOutputModel.KiwiSaverTotalAtRetirement.ToString("#,##0.00")</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4 pr-md-1">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-info">Share / Business</h4>
+                <table class="table table-borderless">
+                    <tr>
+                        <td><span>Current Share / Business ($)</span></td>
+                        <td class="text-right"><span>@wealthchecker.Data.WealthTrackerOutputModel.CurrentShareBusiness.ToString("#,##0.00")</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Share / Business Growth Rate (%)</span></td>
+                        <td class="text-right"><input class="form-control form-control-sm text-right" value="@wealthchecker.Data.WealthTrackerOutputModel.ShareBusinessGrowthRate.ToString("#,##0.00")" /></td>
+                    </tr>
+                    <tr>
+                        <td><span class="text-success">Shares/Business Total at Retirement ($)</span></td>
+                        <td class="text-right"><span class="h4">@wealthchecker.Data.WealthTrackerOutputModel.TotalShareBusinessAtRetirement.ToString("#,##0.00")</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mb-4 pr-md-1">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-info">Property</h4>
+                <table class="table table-borderless">
+                    <tr>
+                        <td><span>Current Property ($)</span></td>
+                        <td class="text-right"><span></span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Current Mortgage ($)</span></td>
+                        <td class="text-right"><span></span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Current Investment Rate (%)</span></td>
+                        <td class="text-right"><input class="form-control form-control-sm text-right" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td><span>Annual Appreciation Rate (%)</span></td>
+                        <td class="text-right"><input class="form-control form-control-sm text-right" value="6" /></td>
+                    </tr>
+                    <tr>
+                        <td><span>Years to Repay Mortgage</span></td>
+                        <td class="text-right"><input class="form-control form-control-sm text-right" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td><span class="text-success">Net Home Value at Retirement ($)</span></td>
+                        <td class="text-right"><span class="h4"></span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4 pr-md-1">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-info">Assets</h4>
+                <table class="table table-borderless">
+                    <tr>
+                        <td><span>Net Assets Excluding Home</span></td>
+                        <td class="text-right"><span></span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Return on Investment (%)</span></td>
+                        <td class="text-right"><input class="form-control form-control-sm text-right" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td><span class="text-success">Total Net Assets Required (Including Home) ($)</span></td>
+                        <td class="text-right"><span class="h4">1,234,567.00</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="row">
+    <div class="col-md-12 mb-4 pr-md-1">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-info">Investment Properties</h4>
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class="text-center">First</th>
+                            <th class="text-center">Second</th>
+                            <th class="text-center">Third</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span>Purchase Year</span></td>
+                            <td class="text-right"><input class="form-control form-control-sm text-right" value="" /></td>
+                            <td class="text-right"><input class="form-control form-control-sm text-right" value="" /></td>
+                            <td class="text-right"><input class="form-control form-control-sm text-right" value="" /></td>
+                        </tr>
+                        <tr>
+                            <td><span>Value ($)</span></td>
+                            <td class="text-right"><input class="form-control form-control-sm text-right" value="" /></td>
+                            <td class="text-right"><input class="form-control form-control-sm text-right" value="" /></td>
+                            <td class="text-right"><input class="form-control form-control-sm text-right" value="" /></td>
+                        </tr>
+                        <tr>
+                            <td><span>Debt ($)</span></td>
+                            <td class="text-right"><input class="form-control form-control-sm text-right" value="" /></td>
+                            <td class="text-right"><input class="form-control form-control-sm text-right" value="" /></td>
+                            <td class="text-right"><input class="form-control form-control-sm text-right" value="" /></td>
+                        </tr>
+                        <tr>
+                            <td><span>P&I Repayments Begin Year ($)</span></td>
+                            <td class="text-right"><input class="form-control form-control-sm text-right" value="" /></td>
+                            <td class="text-right"><input class="form-control form-control-sm text-right" value="" /></td>
+                            <td class="text-right"><input class="form-control form-control-sm text-right" value="" /></td>
+                        </tr>
+                        <tr>
+                            <td><span>Years to Repay Debt</span></td>
+                            <td class="text-right"><input class="form-control form-control-sm text-right" value="" /></td>
+                            <td class="text-right"><input class="form-control form-control-sm text-right" value="" /></td>
+                            <td class="text-right"><input class="form-control form-control-sm text-right" value="" /></td>
+                        </tr>
+                        <tr>
+                            <td><span>Monthly Repayments</span></td>
+                            <td class="text-right"><span></span></td>
+                            <td class="text-right"><span></span></td>
+                            <td class="text-right"><span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="text-success">Net Home Value at Retirement ($)</span></td>
+                            <td class="text-right"><span class="h4">1,234,567.00</span></td>
+                            <td class="text-right"><span class="h4">1,234,567.00</span></td>
+                            <td class="text-right"><span class="h4">1,234,567.00</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-4 pr-md-1">
+        <div class="card">
+            <div class="card-body">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4 pr-md-1">
+        <div class="card">
+            <div class="card-body">
+            </div>
+        </div>
+    </div>
+</div>
 

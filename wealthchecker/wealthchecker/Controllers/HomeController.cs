@@ -25,12 +25,23 @@ namespace wealthchecker.Controllers
 
         public IActionResult WealthTracker(BasicDetails _basicDetails)
         {
+            int retirementAge = 65;
+            double inflationRate = 0.02;
+            double annualCashSavings = 0;
+            double cashSavingsInterestRate = 0.015;
+            double shareBusinessGrowthRate = 0.10;
 
             BasicDetails basicDetails = _basicDetails;
             WealthTrackerOutputModel.BasicDetails = basicDetails;
 
             WealthTrackerCustomLogic cl = new WealthTrackerCustomLogic();
+            cl.FillUpGeneralData(retirementAge);
+            cl.FillUpIncomeData(inflationRate);
+            cl.FillUpCashSavings(annualCashSavings, cashSavingsInterestRate );
             cl.FillUpKiwiData();
+            cl.FillUpSharesBusiness(shareBusinessGrowthRate);
+            cl.FillCurrentAssetsData();
+            cl.FillFinancialGoalData();
 
             return View();
         }

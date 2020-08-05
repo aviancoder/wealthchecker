@@ -18,7 +18,7 @@ namespace wealthchecker.Api
         [HttpGet]
         public List<KiwiSaverData> Get()
         {
-            return WealthTrackerOutputModel.KiwiSaverData;
+            return WealthTrackerOutputModel.KiwiSaverList;
         }
 
         // GET api/<DataMasterController>/5
@@ -33,6 +33,7 @@ namespace wealthchecker.Api
         [HttpPost]
         public void Post([FromBody] string value)
         {
+            //HttpContext.Request.Form[""];
         }
 
         // PUT api/<DataMasterController>/5
