@@ -13,7 +13,6 @@ namespace wealthchecker.CustomLogic
         //private double inflationRate = 0.03;
         private double defaultPensionAmount = 32892;
 
-
         public void FillUpGeneralData(int _retirementAge)
         {
 
@@ -78,6 +77,15 @@ namespace wealthchecker.CustomLogic
             // Surplus and Shortfall
             WealthTrackerOutputModel.SurplusShortfallAmount = WealthTrackerOutputModel.TotalSuperAmount + WealthTrackerOutputModel.KiwiSaverTotalAtRetirement - WealthTrackerOutputModel.TotalLivingExpensesAverage;
             WealthTrackerOutputModel.KiwiSaverTotalAtRetirement = WealthTrackerOutputModel.EstimatedTotalKiwiSaverAmount;
+        }
+
+        public void FillPropertyData(double _interestRate, double _annualAppreciationRate, int _yearsToRepayMortgage)
+        {
+            WealthTrackerOutputModel.CurrentProperty = WealthTrackerOutputModel.BasicDetails.ClientPropertyValue;
+            WealthTrackerOutputModel.CurrentMortgage = WealthTrackerOutputModel.BasicDetails.ClientMortgage;
+            WealthTrackerOutputModel.CurrentInteresttRate = _interestRate;
+            WealthTrackerOutputModel.AnnualAppreciationRate = _annualAppreciationRate;
+            WealthTrackerOutputModel.YearsToRepayMortgage = _yearsToRepayMortgage;
         }
 
         public void FillCurrentAssetsData()
@@ -204,6 +212,23 @@ namespace wealthchecker.CustomLogic
                 finalRate = finalRate * (1 + _interestRate);
             }
             retval = _presentValue * finalRate;
+            return retval;
+        }
+
+        public List<MortgageData> GenerateMortgageTable(double _mortgageAmount, double _interestRate, int _numberOfYears)
+        {
+            List<MortgageData> retval = new List<MortgageData>();
+
+            double endingBalance = _mortgageAmount;
+
+            return retval;
+        }
+
+        public double GetMonthlyPayment(double _presentValue, double _interestRate, int _numberOfYears)
+        {
+            double retval = _presentValue;
+
+
             return retval;
         }
     }

@@ -28,8 +28,11 @@
                         <td class="text-right"><input class="form-control form-control-sm text-right" value="@wealthchecker.Data.WealthTrackerOutputModel.YearsToRetirement" /></td>
                     </tr>
                     <tr>
-                        <td><span>Inflation Rate</span></td>
-                        <td class="text-right"><input class="form-control form-control-sm text-right" value="@wealthchecker.Data.WealthTrackerOutputModel.InflationRate" /></td>
+                        <td><span>Inflation Rate (%)</span></td>
+                        @{
+                            double inflationRate = @wealthchecker.Data.WealthTrackerOutputModel.InflationRate * 100;
+                        }
+                        <td class="text-right"><input class="form-control form-control-sm text-right" value="@inflationRate" /></td>
                     </tr>
                     <tr>
                         <td><span>Annual Income to Retirement (Inflation Adjusted)</span></td>
@@ -62,7 +65,10 @@
                     </tr>
                     <tr>
                         <td><span>Interest Rate (%)</span></td>
-                        <td class="text-right"><input class="form-control form-control-sm text-right" value="@wealthchecker.Data.WealthTrackerOutputModel.CashSavingsInterestRate" /></td>
+                        @{
+                            double cashSavingsRate = @wealthchecker.Data.WealthTrackerOutputModel.CashSavingsInterestRate * 100;
+                        }
+                        <td class="text-right"><input class="form-control form-control-sm text-right" value="@cashSavingsRate" /></td>
                     </tr>
                     <tr>
                         <td><span class="text-success">Cash Savings at Retirement ($)</span></td>
@@ -85,11 +91,18 @@
                     </tr>
                     <tr>
                         <td><span>KiwiSaver Contributions (%)</span></td>
-                        <td class="text-right"><input class="form-control form-control-sm text-right" value="@wealthchecker.Data.WealthTrackerOutputModel.KiwiSaverContributions.ToString("#,##0.00")" /></td>
+                        @{
+                            double kiwiSaverContributionRate = @wealthchecker.Data.WealthTrackerOutputModel.KiwiSaverEmployeeContribution * 100;
+                        }
+                        <td class="text-right"><input class="form-control form-control-sm text-right" value="@kiwiSaverContributionRate" /></td>
                     </tr>
                     <tr>
                         <td><span>Kiwisaver Growth (%)</span></td>
-                        <td class="text-right"><input class="form-control form-control-sm text-right" value="6" /></td>
+                        @{
+                            double kiwiSaverGrowthRate = @wealthchecker.Data.WealthTrackerOutputModel.KiwiSaverAverageInvestmentRate * 100;
+                        }
+
+                        <td class="text-right"><input class="form-control form-control-sm text-right" value="@kiwiSaverGrowthRate" /></td>
                     </tr>
                     <tr>
                         <td><span class="text-success">KiwiSaver Total at Retirement ($)</span></td>
@@ -110,7 +123,10 @@
                     </tr>
                     <tr>
                         <td><span>Share / Business Growth Rate (%)</span></td>
-                        <td class="text-right"><input class="form-control form-control-sm text-right" value="@wealthchecker.Data.WealthTrackerOutputModel.ShareBusinessGrowthRate.ToString("#,##0.00")" /></td>
+                        @{
+                            double shareBusinessGrowthRate = @wealthchecker.Data.WealthTrackerOutputModel.ShareBusinessGrowthRate * 100;
+                        }
+                        <td class="text-right"><input class="form-control form-control-sm text-right" value="@shareBusinessGrowthRate" /></td>
                     </tr>
                     <tr>
                         <td><span class="text-success">Shares/Business Total at Retirement ($)</span></td>
@@ -141,7 +157,7 @@
                     </tr>
                     <tr>
                         <td><span>Annual Appreciation Rate (%)</span></td>
-                        <td class="text-right"><input class="form-control form-control-sm text-right" value="6" /></td>
+                        <td class="text-right"><input class="form-control form-control-sm text-right" value="" /></td>
                     </tr>
                     <tr>
                         <td><span>Years to Repay Mortgage</span></td>

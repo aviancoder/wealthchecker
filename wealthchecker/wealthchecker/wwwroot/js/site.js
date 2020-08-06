@@ -239,7 +239,7 @@ function getCurrentAssets() {
             chart.redraw();
             chart.series[9].points[chart.series[9].points.length - 1].update({
                 dataLabels: {
-                    enabled: true, format: '${point.y:,.2f}', color: '#000000'
+                    enabled: true, format: '$ {point.y:,.2f}', color: '#000000'
                 }
             });
         },
@@ -262,7 +262,7 @@ function getFinancialGoal() {
             chart.redraw();
             chart.series[8].points[chart.series[8].points.length - 1].update({
                 dataLabels: {
-                    enabled: true, format: '${point.y:,.2f}', color: '#000000'
+                    enabled: true, format: '$ {point.y:,.2f}', color: '#000000'
                 }
             });
         },
